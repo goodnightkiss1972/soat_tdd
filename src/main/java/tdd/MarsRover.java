@@ -4,12 +4,12 @@ public class MarsRover {
 
     private final Integer y;
     private final Integer x;
-    private final String orientaion;
+    private final Orientation orientation;
 
-    public MarsRover(Integer x, Integer y, String orientation) {
+    public MarsRover(Integer x, Integer y, Orientation orientation) {
         this.x = x;
         this.y = y;
-        this.orientaion = orientation;
+        this.orientation = orientation;
     }
 
     public Integer getX() {
@@ -20,7 +20,7 @@ public class MarsRover {
         return y;
     }
 
-    public String getOrientation() {
-        return orientaion;
+    public Orientation getOrientation() {
+        return orientation;
     }
 }

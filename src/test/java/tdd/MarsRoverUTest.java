@@ -1,6 +1,10 @@
 package tdd;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,12 +38,12 @@ class MarsRoverUTest {
         assertThat(marsRover.getY()).isEqualTo(2);
     }
 
-    @Test
-    void instantiation_initialize_orientation_when_E() {
+    @ParameterizedTest
+    @MethodSource("orientaionValues")
+    void instantiation_initialize_orientation_when(Orientation orientation) {
         // given
         Integer x = 0;
         Integer y = 0;
-        String orientation = "E";
 
         // when
         final MarsRover marsRover = new MarsRover(x, y, orientation);
@@ -48,17 +52,7 @@ class MarsRoverUTest {
         assertThat(marsRover.getOrientation()).isEqualTo(orientation);
     }
 
-    @Test
-    void instantiation_initialize_orientation_when_N() {
-        // given
-        Integer x = 0;
-        Integer y = 0;
-        String orientation = "N";
-
-        // when
-        final MarsRover marsRover = new MarsRover(x, y, orientation);
-
-        // then
-        assertThat(marsRover.getOrientation()).isEqualTo(orientation);
+    private static Stream<Orientation> orientaionValues() {
+        return Stream.of(Orientation.values());
     }
 }
