@@ -52,6 +52,22 @@ class MarsRoverUTest {
         assertThat(marsRover.getOrientation()).isEqualTo(orientation);
     }
 
+    @Test
+    void forward() {
+        // given
+        Integer x = 0;
+        Integer y = 0;
+        MarsRover marsRover = new MarsRover(x, y, Orientation.E);
+
+        // when
+        marsRover.move("f");
+
+        // then
+        assertThat(marsRover.getX()).isEqualTo(1);
+        assertThat(marsRover.getY()).isEqualTo(0);
+    }
+
+
     private static Stream<Orientation> orientaionValues() {
         return Stream.of(Orientation.values());
     }

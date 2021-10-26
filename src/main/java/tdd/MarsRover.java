@@ -2,9 +2,9 @@ package tdd;
 
 public class MarsRover {
 
-    private final Integer y;
-    private final Integer x;
-    private final Orientation orientation;
+    private Integer y;
+    private Integer x;
+    private Orientation orientation;
 
     public MarsRover(Integer x, Integer y, Orientation orientation) {
         this.x = x;
@@ -22,5 +22,9 @@ public class MarsRover {
 
     public Orientation getOrientation() {
         return orientation;
+    }
+
+    public void move(String command) {
+        x++;
     }
 }
