@@ -25,6 +25,15 @@ public class MarsRover {
     }
 
     public void move(String command) {
-        x++;
+        if (orientation.equals(Orientation.N)) {
+            y++;
+        } else if (orientation.equals(Orientation.W)) {
+            x--;
+        }  else if (orientation.equals(Orientation.S)) {
+            y--;
+        } else {
+            x++;
+        }
     }
 }
+
