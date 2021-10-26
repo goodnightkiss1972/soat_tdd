@@ -2,15 +2,19 @@ package tdd;
 
 public class MarsRover {
 
-    public MarsRover(Integer x, Integer y) {
+    private final Integer y;
+    private final Integer x;
 
+    public MarsRover(Integer x, Integer y) {
+        this.x = x;
+        this.y = y;
     }
 
     public Integer getX() {
-        return 0;
+        return x;
     }
 
     public Integer getY() {
-        return 0;
+        return y;
     }
 }
