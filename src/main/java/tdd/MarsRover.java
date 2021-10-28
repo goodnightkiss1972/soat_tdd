@@ -3,14 +3,17 @@ package tdd;
 public class MarsRover {
 
     public static final int PLANET_BORDER = 5;
+
     private Integer y;
     private Integer x;
     private Orientation orientation;
+    private final Detector detector;
 
-    public MarsRover(Integer x, Integer y, Orientation orientation) {
+    public MarsRover(Integer x, Integer y, Orientation orientation, Detector detector) {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+        this.detector = detector;
     }
 
     public Integer getX() {
@@ -26,6 +29,9 @@ public class MarsRover {
     }
 
     public void move(String command) {
+        if (detector.probe()) {
+            return;
+        }
         if (orientation.equals(Orientation.N)) {
             moveNorth();
         } else if (orientation.equals(Orientation.W)) {
