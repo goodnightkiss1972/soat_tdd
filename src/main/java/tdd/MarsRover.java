@@ -29,10 +29,14 @@ public class MarsRover {
             y++;
         } else if (orientation.equals(Orientation.W)) {
             x--;
-        }  else if (orientation.equals(Orientation.S)) {
+        } else if (orientation.equals(Orientation.S)) {
             y--;
-        } else {
-            x++;
+        } else if (orientation.equals(Orientation.E)) {
+            if (x == 5) {
+                x = 0;
+            } else {
+                x++;
+            }
         }
     }
 }

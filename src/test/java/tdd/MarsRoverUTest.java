@@ -43,7 +43,7 @@ class MarsRoverUTest {
         }
 
         @ParameterizedTest
-        @MethodSource("orientaionValues")
+        @MethodSource("orientationValues")
         void instantiation_initialize_orientation_when(Orientation orientation) {
             // given
             Integer x = 0;
@@ -73,8 +73,7 @@ class MarsRoverUTest {
         assertThat(marsRover.getY()).isEqualTo(newY);
     }
 
-
-    private static Stream<Orientation> orientaionValues() {
+    private static Stream<Orientation> orientationValues() {
         return Stream.of(Orientation.values());
     }
 
@@ -85,5 +84,20 @@ class MarsRoverUTest {
                 Arguments.of(Orientation.W, 0, 0, -1, 0),
                 Arguments.of(Orientation.S, 0, 0, 0, -1)
         );
+    }
+
+    @Test
+    void forward_when_extreme_E() {
+        // given
+        Integer x = 5;
+        Integer y = 0;
+        MarsRover marsRover = new MarsRover(x, y, Orientation.E);
+
+        // when
+        marsRover.move("f");
+
+        // then
+        assertThat(marsRover.getX()).isEqualTo(0);
+        assertThat(marsRover.getY()).isEqualTo(0);
     }
 }
