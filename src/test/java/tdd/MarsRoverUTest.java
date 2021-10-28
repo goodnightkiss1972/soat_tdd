@@ -3,6 +3,7 @@ package tdd;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -56,71 +57,33 @@ class MarsRoverUTest {
         }
     }
 
-    @Nested
-    class Move {
+    @ParameterizedTest
+    @MethodSource("forwardArgs")
+    void forward(Orientation orientation, Integer oldX, Integer oldY, Integer newX, Integer newY) {
+        // given
+        Integer x = oldX;
+        Integer y = oldY;
+        MarsRover marsRover = new MarsRover(x, y, orientation);
 
-        @Test
-        void forward_when_E() {
-            // given
-            Integer x = 0;
-            Integer y = 0;
-            MarsRover marsRover = new MarsRover(x, y, Orientation.E);
+        // when
+        marsRover.move("f");
 
-            // when
-            marsRover.move("f");
-
-            // then
-            assertThat(marsRover.getX()).isEqualTo(1);
-            assertThat(marsRover.getY()).isEqualTo(0);
-        }
-
-        @Test
-        void forward_when_N() {
-            // given
-            Integer x = 0;
-            Integer y = 0;
-            MarsRover marsRover = new MarsRover(x, y, Orientation.N);
-
-            // when
-            marsRover.move("f");
-
-            // then
-            assertThat(marsRover.getX()).isEqualTo(0);
-            assertThat(marsRover.getY()).isEqualTo(1);
-        }
-
-        @Test
-        void forward_when_W() {
-            // given
-            Integer x = 0;
-            Integer y = 0;
-            MarsRover marsRover = new MarsRover(x, y, Orientation.W);
-
-            // when
-            marsRover.move("f");
-
-            // then
-            assertThat(marsRover.getX()).isEqualTo(-1);
-            assertThat(marsRover.getY()).isEqualTo(0);
-        }
-
-        @Test
-        void forward_when_S() {
-            // given
-            Integer x = 0;
-            Integer y = 0;
-            MarsRover marsRover = new MarsRover(x, y, Orientation.S);
-
-            // when
-            marsRover.move("f");
-
-            // then
-            assertThat(marsRover.getX()).isEqualTo(0);
-            assertThat(marsRover.getY()).isEqualTo(-1);
-        }
+        // then
+        assertThat(marsRover.getX()).isEqualTo(newX);
+        assertThat(marsRover.getY()).isEqualTo(newY);
     }
+
 
     private static Stream<Orientation> orientaionValues() {
         return Stream.of(Orientation.values());
+    }
+
+    private static Stream<Arguments> forwardArgs() {
+        return Stream.of(
+                Arguments.of(Orientation.E, 0, 0, 1, 0),
+                Arguments.of(Orientation.N, 0, 0, 0, 1),
+                Arguments.of(Orientation.W, 0, 0, -1, 0),
+                Arguments.of(Orientation.S, 0, 0, 0, -1)
+        );
     }
 }
