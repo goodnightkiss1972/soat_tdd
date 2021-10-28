@@ -29,15 +29,31 @@ public class MarsRover {
         if (orientation.equals(Orientation.N)) {
             moveNorth();
         } else if (orientation.equals(Orientation.W)) {
-            x--;
+            moveWest();
         } else if (orientation.equals(Orientation.S)) {
-            y--;
+            moveSouth();
         } else if (orientation.equals(Orientation.E)) {
-            moveEst();
+            moveEast();
         }
     }
 
-    private void moveEst() {
+    private void moveSouth() {
+        if (y == 0) {
+            y = PLANET_BORDER;
+        } else {
+            y--;
+        }
+    }
+
+    private void moveWest() {
+        if (x == 0) {
+            x = PLANET_BORDER;
+        } else  {
+            x--;
+        }
+    }
+
+    private void moveEast() {
         if (x == PLANET_BORDER) {
             x = 0;
         } else {

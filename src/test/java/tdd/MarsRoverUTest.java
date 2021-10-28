@@ -78,7 +78,7 @@ class MarsRoverUTest {
         return Stream.of(
                 Arguments.of(Orientation.E, 0, 0, 1, 0),
                 Arguments.of(Orientation.N, 0, 0, 0, 1),
-                Arguments.of(Orientation.W, 0, 0, -1, 0),
+                Arguments.of(Orientation.W, 0, 0, 5, 0),
                 Arguments.of(Orientation.S, 0, 0, 0, -1)
         );
     }
@@ -111,5 +111,35 @@ class MarsRoverUTest {
         // then
         assertThat(marsRover.getX()).isEqualTo(0);
         assertThat(marsRover.getY()).isEqualTo(0);
+    }
+
+    @Test
+    void forward_when_extreme_W() {
+        // given
+        Integer x = 0;
+        Integer y = 0;
+        MarsRover marsRover = new MarsRover(x, y, Orientation.W);
+
+        // when
+        marsRover.move("f");
+
+        // then
+        assertThat(marsRover.getX()).isEqualTo(5);
+        assertThat(marsRover.getY()).isEqualTo(0);
+    }
+
+    @Test
+    void forward_when_extreme_S() {
+        // given
+        Integer x = 0;
+        Integer y = 0;
+        MarsRover marsRover = new MarsRover(x, y, Orientation.S);
+
+        // when
+        marsRover.move("f");
+
+        // then
+        assertThat(marsRover.getX()).isEqualTo(0);
+        assertThat(marsRover.getY()).isEqualTo(5);
     }
 }
